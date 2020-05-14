@@ -1,0 +1,21 @@
+export JOB_NAME = "test_job"
+export BUCKET_NAME = data_test_timeseries
+export CLOUD_CONFIG = cloudml-gpu.yaml
+export JOB_DIR = gs://data_test_timeseries/jobs/$JOB_NAME
+export MODULE = main
+export PACKAGE_PATH = C:\Reihane\PhD\Python\PyCharmProjects\FirstInGCloud
+export REGION = europe-west2
+export RUNTIME = 1.2
+export TRAIN_FILE = gs://data_test_timeseries/data/pickle
+
+gcloud ml-engine jobs submit training £JOB_NAME \
+    --job-dir $JOB_DIR \
+    --runtime-version $RUNTIME \
+    --module-name $MODULE \
+    --package-path $PACKAGE_PATH \
+    --region $REGION \
+    --config=$CLOUD_CONFIG \
+    -- \
+    --train-file $TRAIN_FILE \
+    --job-name $JOB_NAME
+
